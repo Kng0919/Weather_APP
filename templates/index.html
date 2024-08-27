@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Kai Yin Ng">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .weather-container {
+            display: inline-block;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .weather-container h1 {
+            margin-bottom: 20px;
+        }
+        .weather-details {
+            font-size: 18px;
+        }
+        .weather-details img {
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-container">
+        <h1>Weather App</h1>
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit" name="get_weather">Get Weather</button>
+        </form>
+        <form method="POST">
+            <br>
+            <button type="submit" name="get_location_weather">Get Weather by Location</button>
+        </form>
+        {% if weather %}
+        <div class="weather-details">
+            <h2>{{ weather['city'] }}</h2>
+            <p>Temperature: {{ weather['temperature'] }}</p>
+            <p>Wind: {{ weather['wind'] }}</p>
+            <p>Description: {{ weather['description'] }}</p>
+            <img src="{{ weather_icon }}" alt="Weather Icon">
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
