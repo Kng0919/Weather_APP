@@ -42,15 +42,23 @@
             <br>
             <button type="submit" name="get_location_weather">Get Weather by Location</button>
         </form>
-        {% if weather %}
-        <div class="weather-details">
-            <h2>{{ weather['city'] }}</h2>
-            <p>Temperature: {{ weather['temperature'] }}</p>
-            <p>Wind: {{ weather['wind'] }}</p>
-            <p>Description: {{ weather['description'] }}</p>
-            <img src="{{ weather_icon }}" alt="Weather Icon">
-        </div>
+        {% if request.method == "POST" %}
+            {% if weather %}
+                <div class="weather-details">
+                    <h2>{{ weather['city'] }}</h2>
+                    <p>Temperature: {{ weather['temperature'] }}</p>
+                    <p>Wind: {{ weather['wind'] }}</p>
+                    <p>Description: {{ weather['description'] }}</p>
+                    <img src="{{ weather_icon }}" alt="Weather Icon">
+                </div>
+            {% elif weather is none %}
+                <p>Weather data is not available. Please check again later.</p>
+            {% endif %}
         {% endif %}
+    
+
+        
+
     </div>
 </body>
 </html>
